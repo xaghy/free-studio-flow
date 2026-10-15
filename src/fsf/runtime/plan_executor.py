@@ -826,6 +826,8 @@ class PlanExecutor:
                                 )
                             if prior_step.get("review_required"):
                                 step_results[step_id]["review_required"] = True
+                            if prior_step.get("workorder_id"):
+                                step_results[step_id]["workorder_id"] = prior_step["workorder_id"]
                             for out_ref in declared_outputs:
                                 clean = out_ref.replace("artifact:", "").replace("report:", "")
                                 self._artifact_registry[out_ref] = self.output_dir / clean
